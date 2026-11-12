@@ -1,0 +1,1 @@
+tiny-chess-01 engine entry. Python 3.13 standard library. Alpha-beta search with fixed node budget.
