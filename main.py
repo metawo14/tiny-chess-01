@@ -115,7 +115,7 @@ def ch(fen,l):
  return bm
 if __name__=="__main__":
  E=os.environ.get("MAKEFUN_ENV_URL") or sys.exit(0)
- q=lambda x,y=None:json.load(R.urlopen(R.Request(E+x,data=json.dumps(y).encode() if y else None,headers={"content-type":"application/json"})))
+ q=lambda x,y=None:json.load(R.urlopen(R.Request(E+x,data=json.dumps(y or {}).encode(),headers={"content-type":"application/json"})))
  while 1:
   g_=q("/game",{})
   if g_["status"]=="done":break
