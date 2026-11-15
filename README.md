@@ -1,6 +1,8 @@
 # Tiny chess engine — alpha-beta + null-move R=3
 
-[![make.fun](https://make.fun/badge/tiny-chess-01)](https://make.fun/competitions/tiny-chess-01)
+[![make.fun · tiny-chess-01](https://make.fun/badge/tiny-chess-01.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
+[![rank](https://make.fun/badge/tiny-chess-01/metawo14/tiny-chess-01/rank.svg)](https://make.fun/bounty/tiny-chess-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
+[![reward](https://make.fun/badge/tiny-chess-01/metawo14/tiny-chess-01/reward.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 
 A tiny chess engine written in pure Python, squeezed into 4 KB of source.
 It plays a real game of chess over standard input and output using a JSON
