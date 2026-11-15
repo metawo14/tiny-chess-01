@@ -6,10 +6,10 @@ S=lambda x:chr(x%8+97)+str(x//16+1)
 def p(f):
  d,b=f.split(),[0]*128
  for r,w in enumerate(d[0].split("/")):
-  c=0
+  n=0
   for x in w:
-   if x<'A':c+=int(x)
-   else:b[(7-r)*16+c]=" PNBRQK".find(x.upper())*(2*(x<'a')-1);c+=1
+   if x<'A':n+=int(x)
+   else:b[(7-r)*16+n]=" PNBRQK".find(x.upper())*(2*(x<'a')-1);n+=1
  return b,(d[1]>"v")*2-1,d[2],-1 if d[3]<"a" else ord(d[3][0])+16*int(d[3][1])-113
 def i(b,sq,by):
  for q,w in enumerate(b):
@@ -28,8 +28,8 @@ def i(b,sq,by):
  return 0
 def mv(b,m,t):
  f,to,pr,ef=m;cp=b[to];b[to]=b[f];b[f]=0
- if pr:b[to]=pr*t
  es,ep2=-1,0
+ if pr:b[to]=pr*t
  if ef:es=to-16*t;ep2=b[es];b[es]=0
  ik=abs(b[to])==6 and abs(f-to)==2;rt=rx=0
  if ik:rt=to+(1,-2)[to<f];rx=to+(-1,1)[to<f];rk=b[rt];b[rt]=0;b[rx]=rk
@@ -40,10 +40,10 @@ def un(b,m,t,cp,es,ep2,ik,rt,rx):
  if ef:b[es]=ep2
  b[f]=pr and t or b[to];b[to]=cp
 def e(b,t):
- m=0
+ r=0
  for q,w in enumerate(b):
-  if w:m+=(V[abs(w)]+((q>>4)-1 if w>0 else 6-(q>>4))*5+(7-abs(2*(q&7)-7)-abs(2*(q>>4)-7))*(abs(w)<6)*2)*(w>0 or-1)
- return m*t
+  if w:r+=(V[abs(w)]+((q>>4)-1 if w>0 else 6-(q>>4))*5+(7-abs(2*(q&7)-7)-abs(2*(q>>4)-7))*(abs(w)<6)*2)*(w>0 or-1)
+ return r*t
 def up(c,m,b,t):
  f,to,pr,ef=m;p=b[f];nep=(f+to)//2 if abs(p)==1 and abs(f-to)==32 else -1;nc=c
  if abs(p)==6:
@@ -83,13 +83,13 @@ def g(b,t,cr,ep):
    if pt==6 and not i(b,K(b,t),-t):
     for a,b_,c_,d2,k in((4,6,5,7,"K"),(4,2,3,0,"Q"),(116,118,117,119,"k"),(116,114,115,112,"q")):
      if k in cr and b[b_]==b[c_]==0 and b[d2]==4*t and not(i(b,b_,-t)or i(b,c_,-t)) and (k in"Kk"or not b[a-3]):ms.append((a,b_,0,0))
- l=[]
+ z=[]
  for m in ms:
   st=mv(b,m,t)
-  if not i(b,K(b,t),-t):l.append(m)
+  if not i(b,K(b,t),-t):z.append(m)
   un(b,m,t,*st)
- l.sort(key=lambda m:-V[abs(b[m[1]])]-900*(m[2]>4))
- return l
+ z.sort(key=lambda m:-V[abs(b[m[1]])]-900*(m[2]>4))
+ return z
 def s(b,t,cr,ep,d,a,bt,nl):
  inc=i(b,K(b,t),-t)
  if min(d,nl)<1:
@@ -117,15 +117,15 @@ def s(b,t,cr,ep,d,a,bt,nl):
 def ch(fen,l):
  b,t,cr,ep=p(fen);M=g(b,t,cr,ep);best=M[0]
  for d in range(6):
-  nl=8e3;bs=-1e9;a=-1e6;bt=1e6;bm2=best
+  nl=8e3;bs=-1e9;a=-1e6;bt=1e6;bb=best
   for m in M:
    ncr,nep=up(cr,m,b,t);st=mv(b,m,t)
    sc,nl=s(b,-t,ncr,nep,d,-bt,-a,nl)
    un(b,m,t,*st)
    if nl<0:break
-   if-sc>bs:bs=a=-sc;bm2=m
+   if-sc>bs:bs=a=-sc;bb=m
   if nl<0:break
-  best=bm2
+  best=bb
   if bs>19e3:break
  f,to,pr,_=best
  return S(f)+S(to)+('nbrq'[pr-2]if pr else'')
